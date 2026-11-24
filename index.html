@@ -225,7 +225,7 @@ async function loadBoard() {
       '<td class="num">' + r.stamps + '</td>' +
       '<td class="num">' + r.streak + '</td>' +
       '<td class="num">' + (r.badges && r.badges.length ? r.badges.length + ' / 3' : '0 / 3') + '</td>' +
-      '<td class="num"><a href="https://bscscan.com/tx/' + r.tx + '" target="_blank" rel="noopener">tx ↗</a></td></tr>'
+      '<td class="num"><a href="https://bscscan.com/token/' + CONTRACT_ADDRESS + '?a=' + r.tokenId + '" target="_blank" rel="noopener">NFT ↗</a></td></tr>'
     ).join('');
     document.getElementById('boardUpdated').textContent = '快照 Snapshot: ' + new Date(data.updatedAt).toLocaleString('zh-CN', { hour12: false }) + ' · 共 ' + data.totalAgents + ' 个 Agent 参与';
   } catch (e) {
