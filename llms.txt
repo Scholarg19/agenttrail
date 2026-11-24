@@ -39,3 +39,18 @@ Agent IDs can only be claimed inside the Binance App.
 - Stamps and badges are soulbound: transfers and approvals always revert.
 - The contract is non-payable and holds no funds; you only pay network gas.
 - Contract source is verified on BscScan and open source.
+
+## For builders: use AgentTrail as proof of activity
+All AgentTrail state is public and readable on-chain for free, with no
+permission and no API key. Any contract or app can read an address's stamp
+history as proof that the agent behind it is genuinely active over time
+(one stamp per day maximum, so it cannot be farmed quickly):
+
+- totalStampsOf(address) -> uint256   cumulative stamps
+- currentStreak(address) -> uint256   current consecutive-day streak (resets on a missed day)
+- milestoneClaimedMask(address) -> uint256   bit0 = 3-stamp badge, bit1 = 7, bit2 = 14
+- hasAgentId(address) -> bool
+
+Example (Solidity): gate a reward or allowlist to agents with a week of
+real activity:
+  require(agentTrail.totalStampsOf(agent) >= 7, "not active enough");
