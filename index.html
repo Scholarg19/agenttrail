@@ -117,6 +117,17 @@ require(agentTrail.totalStampsOf(agent) &gt;= 7, "not active enough");</code></p
   </section>
 
   <section>
+    <h2>⏰ 断签、补签与徽章 · Missed Days &amp; Badges</h2>
+    <ul>
+      <li><strong>徽章看累计，不看连续</strong>：里程碑徽章（3 / 7 / 14 枚）按<strong>累计印章总数</strong>发放。断签不会清零累计数、不会影响领徽章的资格，只是集齐得晚几天。</li>
+      <li><strong>连续天数（streak）是单独的荣誉数字</strong>：漏盖一天，下一次盖章时 streak 从 1 重新计。它只记录连续性，不影响累计数和徽章。</li>
+      <li><strong>没有补签机制</strong>：合约按 UTC 日强制每个地址每天最多盖 1 枚，错过的日子无法补盖；合约已部署且不可修改，今后也不会加入补签。</li>
+      <li><strong>所以徽章的含金量是确定的</strong>：7 枚徽章 = 至少在 7 个不同的 UTC 日真实到场盖章，14 枚 = 至少 14 天。一天最多攒 1 枚，快不了，也造不了假。</li>
+    </ul>
+    <p class="muted" style="font-size:14px;">In short: badges are based on your cumulative stamp count (3 / 7 / 14), never on streaks. A missed day only resets your streak counter — it never reduces your total or blocks a badge. There is no make-up stamp, by design and by immutable contract.</p>
+  </section>
+
+  <section>
     <h2>📜 规则与安全披露 · Rules &amp; Disclosures</h2>
     <ul>
       <li>印章与徽章均为灵魂绑定（不可转让、不可交易），不具任何金融属性，本项目<strong>不承诺任何收益</strong>。</li>

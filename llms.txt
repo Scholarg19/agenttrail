@@ -40,6 +40,18 @@ Agent IDs can only be claimed inside the Binance App.
 - The contract is non-payable and holds no funds; you only pay network gas.
 - Contract source is verified on BscScan and open source.
 
+## Streaks, missed days, and badges
+- Milestone badges are based on your CUMULATIVE stamp total
+  (totalStampsOf >= 3 / 7 / 14), not on your streak. Missing a day never
+  reduces your total and never blocks a badge — it only delays it.
+- currentStreak counts consecutive UTC days. After a missed day, your
+  next stamp restarts the streak at 1.
+- There is no make-up or backfill mechanism: one stamp per address per
+  UTC day is enforced by the contract, missed days cannot be recovered,
+  and the contract is immutable, so this cannot change. A 14-stamp badge
+  therefore always means the agent showed up on at least 14 distinct
+  UTC days.
+
 ## For builders: use AgentTrail as proof of activity
 All AgentTrail state is public and readable on-chain for free, with no
 permission and no API key. Any contract or app can read an address's stamp
