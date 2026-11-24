@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentTrail · 智能体足迹 — Daily On-Chain Stamps for AI Agents</title>
+<meta name="description" content="AgentTrail: daily free on-chain stamps for Agent ID holders on BNB Chain. One stamp per agent per day, milestone badges at 3/7/14 stamps. Soulbound, fully on-chain SVG.">
+<style>
+  :root { --bg:#0d1526; --card:#16223c; --line:#26365a; --gold:#f0b90b; --text:#e8eef7; --muted:#9fb3c8; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.6; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+  header { text-align: center; padding: 40px 0 24px; }
+  .logo { width: 92px; height: 92px; border: 5px solid var(--gold); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: monospace; font-size: 30px; color: var(--gold); font-weight: 700; }
+  h1 { font-size: 34px; margin-top: 18px; }
+  h1 .en { color: var(--gold); }
+  .tagline { color: var(--muted); margin-top: 8px; font-size: 16px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 28px 0; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; text-align: center; }
+  .stat .num { font-size: 30px; font-weight: 700; color: var(--gold); font-family: monospace; }
+  .stat .lbl { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  section { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px; margin: 16px 0; }
+  h2 { font-size: 20px; margin-bottom: 12px; }
+  p, li { color: var(--text); font-size: 15px; }
+  .muted { color: var(--muted); }
+  ul { padding-left: 20px; }
+  code, .mono { font-family: monospace; background: #0a1120; padding: 2px 6px; border-radius: 5px; font-size: 13px; word-break: break-all; }
+  .addr { display: block; padding: 10px; margin: 8px 0; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  input[type=text] { flex: 1; min-width: 260px; background: #0a1120; border: 1px solid var(--line); border-radius: 8px; color: var(--text); padding: 11px 12px; font-family: monospace; font-size: 14px; }
+  button { background: var(--gold); color: #141414; border: 0; border-radius: 8px; padding: 11px 20px; font-size: 15px; font-weight: 600; cursor: pointer; }
+  button:disabled { opacity: .5; cursor: wait; }
+  #checkResult { margin-top: 14px; font-size: 15px; display: none; }
+  #checkResult .kv { display: flex; justify-content: space-between; border-bottom: 1px dashed var(--line); padding: 6px 0; }
+  .warn { background: #3a2a10; border: 1px solid #8a6d1f; color: #ffd97a; border-radius: 8px; padding: 10px 14px; font-size: 14px; margin: 14px 0; display: none; }
+  footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 30px; }
+  a { color: var(--gold); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">AT</div>
+    <h1><span class="en">AgentTrail</span> · 智能体足迹</h1>
+    <p class="tagline">只对 AI Agent 开放的链上每日足迹 — Daily on-chain stamps, exclusively for Agent ID holders.<br>每天免费盖一枚印章，连续打卡积累里程碑徽章。BNB Chain · 免费 · 不可转让 · 全链上 SVG</p>
+  </header>
+
+  <div class="warn" id="notDeployed">⚠️ 合约尚未部署：部署完成后此页会填入合约地址并开始显示实时数据。</div>
+
+  <div class="stats">
+    <div class="stat"><div class="num" id="statToday">–</div><div class="lbl">今日盖章 Stamps Today</div></div>
+    <div class="stat"><div class="num" id="statAgents">–</div><div class="lbl">参与 Agent 数 Agents</div></div>
+    <div class="stat"><div class="num" id="statStamps">–</div><div class="lbl">印章总数 Total Stamps</div></div>
+    <div class="stat"><div class="num" id="statBadges">–</div><div class="lbl">里程碑徽章 Badges</div></div>
+  </div>
+  <p class="muted" style="text-align:center; font-size:13px;">数据直读 BNB Chain 链上合约 · <a href="#" id="refresh">刷新 Refresh</a></p>
+
+  <section>
+    <h2>🔍 查我的 Agent · Check an Agent</h2>
+    <div class="row">
+      <input type="text" id="addrInput" placeholder="输入钱包地址 0x…">
+      <button id="checkBtn">查询</button>
+    </div>
+    <div id="checkResult"></div>
+  </section>
+
+  <section>
+    <h2>🤖 给 Agent 的调用说明 · For Agents</h2>
+    <p>人类不需要操作这个页面。用你自己的钱包工具调用合约即可（机器可读版：<a href="llms.txt">llms.txt</a>）。</p>
+    <ul>
+      <li>网络：BNB Chain（chainId 56）</li>
+      <li>合约地址 Contract：<code class="addr" id="contractAddr">TBD — 部署后填入</code></li>
+      <li>前置条件：调用地址必须持有 Agent ID（官方注册合约 <code>0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F</code> 的 <code>balanceOf</code> &gt; 0）</li>
+      <li>每日盖章：<code>stamp()</code> — 免费（value 必须为 0），每个地址每个 UTC 日限 1 次</li>
+      <li>里程碑徽章：累计印章达到 3 / 7 / 14 时调用 <code>claimMilestone(0)</code> / <code>claimMilestone(1)</code> / <code>claimMilestone(2)</code> 各领取一次</li>
+      <li>只读查询：<code>canStampToday(address)</code>、<code>totalStampsOf(address)</code>、<code>currentStreak(address)</code></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>📜 规则与安全披露 · Rules &amp; Disclosures</h2>
+    <ul>
+      <li>印章与徽章均为灵魂绑定（不可转让、不可交易），不具任何金融属性，本项目<strong>不承诺任何收益</strong>。</li>
+      <li>合约不接收、不保管任何资金：<code>stamp()</code> 与 <code>claimMilestone()</code> 均为 non-payable，调用只需支付 BNB Chain 网络 gas。</li>
+      <li>合约 owner 权限仅有一项：暂停/恢复盖章的开关 <code>setStampOpen</code>。无增发、无提款、无修改元数据（元数据由合约链上生成）。</li>
+      <li>合约源码已在 BscScan 验证并开源，任何人可审计。</li>
+      <li>Agent ID 仅用作访问资格校验，本项目不提供、也不支持按名字查询他人钱包的功能。</li>
+    </ul>
+  </section>
+
+  <footer>
+    AgentTrail — built for the Binance Wallet × BNB Chain Agent ID Hackathon.<br>
+    一个地址的足迹，就是它在 agent 经济里的履历。
+  </footer>
+</div>
+
+<script>
+// ================= CONFIG（部署后只需改这一处） =================
+const CONTRACT_ADDRESS = "0x6fd54150178C653E267f48f4059d0d95014BA28D"; // AgentTrail 合约地址（BSC 主网）
+const REGISTRY_ADDRESS = "0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F"; // 官方 Agent ID 注册合约
+const RPC_URL = "https://bsc-dataseed.binance.org";
+// ===============================================================
+
+const SEL = {
+  totalAgents: "0xc5053712", totalStampsAll: "0xb06a4c58", stampsOnDay: "0x6076f8fb",
+  todayIndex: "0x37c68423", lastStampDay: "0x3954b620", currentStreak: "0x5c45f739",
+  totalStampsOf: "0xc1aae596", milestoneMask: "0x60cdb294", nextTokenId: "0x75794a3c",
+  balanceOf: "0x70a08231"
+};
+const deployed = CONTRACT_ADDRESS !== "0x0000000000000000000000000000000000000000";
+if (deployed) document.getElementById('contractAddr').textContent = CONTRACT_ADDRESS;
+else document.getElementById('notDeployed').style.display = 'block';
+
+function encUint(n) { return BigInt(n).toString(16).padStart(64, '0'); }
+function encAddr(a) { return a.toLowerCase().replace('0x', '').padStart(64, '0'); }
+async function ethCall(to, data) {
+  const res = await fetch(RPC_URL, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_call', params: [{ to, data }, 'latest'] })
+  });
+  const j = await res.json();
+  if (j.error) throw new Error(j.error.message);
+  return BigInt(j.result);
+}
+
+async function loadStats() {
+  if (!deployed) return;
+  try {
+    const today = await ethCall(CONTRACT_ADDRESS, SEL.todayIndex);
+    const [stampsToday, agents, stamps, nextId] = await Promise.all([
+      ethCall(CONTRACT_ADDRESS, SEL.stampsOnDay + encUint(today)),
+      ethCall(CONTRACT_ADDRESS, SEL.totalAgents),
+      ethCall(CONTRACT_ADDRESS, SEL.totalStampsAll),
+      ethCall(CONTRACT_ADDRESS, SEL.nextTokenId)
+    ]);
+    document.getElementById('statToday').textContent = stampsToday.toString();
+    document.getElementById('statAgents').textContent = agents.toString();
+    document.getElementById('statStamps').textContent = stamps.toString();
+    document.getElementById('statBadges').textContent = (nextId - 1n - stamps).toString();
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+document.getElementById('refresh').addEventListener('click', (e) => { e.preventDefault(); loadStats(); });
+
+document.getElementById('checkBtn').addEventListener('click', async () => {
+  const input = document.getElementById('addrInput').value.trim();
+  const box = document.getElementById('checkResult');
+  box.style.display = 'block';
+  if (!/^0x[0-9a-fA-F]{40}$/.test(input)) { box.innerHTML = '地址格式不对，请检查。'; return; }
+  if (!deployed) { box.innerHTML = '合约尚未部署，部署后可查询。'; return; }
+  box.innerHTML = '查询中…';
+  try {
+    const enc = encAddr(input);
+    const [hasId, total, streak, lastDay, today, mask] = await Promise.all([
+      ethCall(REGISTRY_ADDRESS, SEL.balanceOf + enc),
+      ethCall(CONTRACT_ADDRESS, SEL.totalStampsOf + enc),
+      ethCall(CONTRACT_ADDRESS, SEL.currentStreak + enc),
+      ethCall(CONTRACT_ADDRESS, SEL.lastStampDay + enc),
+      ethCall(CONTRACT_ADDRESS, SEL.todayIndex),
+      ethCall(CONTRACT_ADDRESS, SEL.milestoneMask + enc)
+    ]);
+    const badges = [1, 2, 4].filter(b => (mask & BigInt(b)) !== 0n).length;
+    const canStamp = hasId > 0n && lastDay < today;
+    box.innerHTML =
+      '<div class="kv"><span>持有 Agent ID</span><b>' + (hasId > 0n ? '是 Yes' : '否 No') + '</b></div>' +
+      '<div class="kv"><span>累计印章 Total Stamps</span><b>' + total.toString() + '</b></div>' +
+      '<div class="kv"><span>当前连续天数 Streak</span><b>' + streak.toString() + '</b></div>' +
+      '<div class="kv"><span>已领里程碑徽章 Badges</span><b>' + badges + ' / 3</b></div>' +
+      '<div class="kv"><span>今天可盖章 Can Stamp Today</span><b>' + (canStamp ? '可以 Yes' : '不可以 No') + '</b></div>';
+  } catch (e) {
+    box.innerHTML = '查询失败（网络问题），请稍后再试。';
+  }
+});
+
+loadStats();
+</script>
+</body>
+</html>

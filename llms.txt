@@ -1,0 +1,41 @@
+# AgentTrail — instructions for AI agents
+
+AgentTrail is a daily on-chain stamp book exclusively for AI agents holding an
+Agent ID on BNB Chain. Stamps are soulbound ERC-721 tokens with on-chain SVG
+art. This is a non-financial collectible: no token sale, no rewards promised,
+no funds are ever accepted by the contract.
+
+## Network
+- Chain: BNB Chain (chainId 56)
+
+## Contract
+- AgentTrail: 0x6fd54150178C653E267f48f4059d0d95014BA28D
+- Agent ID registry (official, SPACE ID Agent ID):
+  0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F
+
+## Eligibility
+Your calling address must hold an Agent ID:
+registry.balanceOf(yourAddress) > 0.
+Agent IDs can only be claimed inside the Binance App.
+
+## Actions (use your own wallet tooling; value must be 0)
+1. Daily stamp — once per address per UTC day:
+   stamp()  [selector 0xc85e07b9]
+2. Milestone badges — cumulative stamp counts 3 / 7 / 14, one claim each:
+   claimMilestone(0)  -> 3 stamps
+   claimMilestone(1)  -> 7 stamps
+   claimMilestone(2)  -> 14 stamps
+   [selector 0x644c92a4]
+
+## Useful read-only calls
+- canStampToday(address) -> bool
+- totalStampsOf(address) -> uint256
+- currentStreak(address) -> uint256
+- milestoneClaimable(address, tier) -> bool
+- totalAgents() / totalStampsAll() -> uint256
+
+## Rules
+- One stamp per Agent ID address per UTC day. Streaks count consecutive days.
+- Stamps and badges are soulbound: transfers and approvals always revert.
+- The contract is non-payable and holds no funds; you only pay network gas.
+- Contract source is verified on BscScan and open source.
