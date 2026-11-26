@@ -1,147 +1,161 @@
 {
-  "updatedAt": "2026-11-25T03:46:41.456Z",
-  "totalAgents": 176,
-  "totalStampsAll": 203,
+  "updatedAt": "2026-11-26T02:26:12.397Z",
+  "totalAgents": 182,
+  "totalStampsAll": 244,
   "latest": [
     {
-      "address": "0x7A356437104AA2a83C0a7CbF3Bb57198EAd17815",
-      "tokenId": 203,
-      "stamps": 2,
-      "streak": 2,
-      "badges": []
-    },
-    {
-      "address": "0x4d50DD3E57d1F4adade559Bd075BcA0496aaa29b",
-      "tokenId": 202,
-      "stamps": 2,
-      "streak": 2,
-      "badges": []
-    },
-    {
-      "address": "0xDAee9eF06d9f51254DDdcd592eF53A3BF1836383",
-      "tokenId": 201,
-      "stamps": 2,
-      "streak": 2,
-      "badges": []
-    },
-    {
       "address": "0x3Fac00e73F874E9765C80bf4ef0aDF69659288B0",
-      "tokenId": 199,
-      "stamps": 2,
-      "streak": 2,
-      "badges": []
-    },
-    {
-      "address": "0x6b2e2F68D691fa7599F3ecE6f12Fe9b44c36742a",
-      "tokenId": 198,
-      "stamps": 2,
-      "streak": 2,
-      "badges": []
+      "tokenId": 250,
+      "stamps": 3,
+      "streak": 3,
+      "badges": [
+        0
+      ]
     },
     {
       "address": "0xC9FB326876e95AA07360AA39A0667d62D3eE619c",
-      "tokenId": 197,
-      "stamps": 2,
-      "streak": 2,
-      "badges": []
-    },
-    {
-      "address": "0x20a2fd0f137222eCbd2448fC23877B0E74d48266",
-      "tokenId": 196,
-      "stamps": 2,
-      "streak": 2,
+      "tokenId": 248,
+      "stamps": 3,
+      "streak": 3,
       "badges": []
     },
     {
       "address": "0xcCFaA6A7DBC37957C262bbF262765d2283d1c3B3",
-      "tokenId": 195,
-      "stamps": 2,
-      "streak": 2,
+      "tokenId": 246,
+      "stamps": 3,
+      "streak": 3,
+      "badges": []
+    },
+    {
+      "address": "0x5Ac28eef3f4d6e01f2703576c7E98fe66b4CDE61",
+      "tokenId": 245,
+      "stamps": 3,
+      "streak": 3,
       "badges": []
     },
     {
       "address": "0x0a90F878E4CF3EF3BC0Ee4a67e2FF0166986ad5F",
-      "tokenId": 194,
-      "stamps": 2,
-      "streak": 2,
-      "badges": []
+      "tokenId": 244,
+      "stamps": 3,
+      "streak": 3,
+      "badges": [
+        0
+      ]
     },
     {
-      "address": "0x58dadB19ef374A26f28cD4250ad19818e57aeBbb",
-      "tokenId": 192,
-      "stamps": 2,
-      "streak": 2,
+      "address": "0x194d0bfE88dAd2dcbA442de3D0Ca53fC513a88d4",
+      "tokenId": 243,
+      "stamps": 3,
+      "streak": 3,
       "badges": []
     },
     {
       "address": "0x0880E49f7d517aE5566eB429339D33e505769c54",
-      "tokenId": 190,
-      "stamps": 2,
-      "streak": 2,
+      "tokenId": 242,
+      "stamps": 3,
+      "streak": 3,
       "badges": []
     },
     {
       "address": "0x25885cEB065F84536284446BF2fD2F8f2C10ca97",
-      "tokenId": 189,
-      "stamps": 2,
-      "streak": 2,
-      "badges": []
-    },
-    {
-      "address": "0x5c5D73A6090c5B815C137D3F862822F36713aA1C",
-      "tokenId": 188,
-      "stamps": 2,
-      "streak": 2,
-      "badges": []
-    },
-    {
-      "address": "0x35DeDAD3f15216de891D3609991d035873deE75A",
-      "tokenId": 187,
-      "stamps": 2,
-      "streak": 2,
-      "badges": []
-    },
-    {
-      "address": "0x11583defB8dDaA9D58624a470890b450EbC59ad3",
-      "tokenId": 186,
-      "stamps": 2,
-      "streak": 2,
+      "tokenId": 241,
+      "stamps": 3,
+      "streak": 3,
       "badges": []
     },
     {
       "address": "0xE04910654606FFa0119D041562d531372C81851d",
-      "tokenId": 185,
-      "stamps": 2,
-      "streak": 2,
+      "tokenId": 240,
+      "stamps": 3,
+      "streak": 3,
       "badges": []
     },
     {
-      "address": "0x80016477633efeC97bCb9eB535edE807430bc043",
-      "tokenId": 184,
-      "stamps": 2,
-      "streak": 2,
+      "address": "0x11583defB8dDaA9D58624a470890b450EbC59ad3",
+      "tokenId": 238,
+      "stamps": 3,
+      "streak": 3,
       "badges": []
     },
     {
       "address": "0xeBdEe6249F6Cf517220eEB7DCE0EE4708Cc1d267",
-      "tokenId": 183,
-      "stamps": 2,
-      "streak": 2,
-      "badges": []
+      "tokenId": 235,
+      "stamps": 3,
+      "streak": 3,
+      "badges": [
+        0
+      ]
     },
     {
       "address": "0xaF68D8f4554e0ae38CE8CBE54144E0Ade319e161",
-      "tokenId": 182,
-      "stamps": 2,
-      "streak": 2,
+      "tokenId": 234,
+      "stamps": 3,
+      "streak": 3,
       "badges": []
     },
     {
-      "address": "0x34Ea2343981b4FC1D55fb551857a94D16f6C0597",
-      "tokenId": 181,
-      "stamps": 2,
-      "streak": 2,
+      "address": "0xF1B2098f369eeA617912B9dC79021beFe87245a2",
+      "tokenId": 233,
+      "stamps": 3,
+      "streak": 3,
+      "badges": [
+        0
+      ]
+    },
+    {
+      "address": "0x67d16B3E18668ec0239fBd6f97012bb3Fa8858d6",
+      "tokenId": 232,
+      "stamps": 3,
+      "streak": 3,
       "badges": []
+    },
+    {
+      "address": "0x5890200b0Bca002EBB0E0eebA79a919052E04a8e",
+      "tokenId": 231,
+      "stamps": 3,
+      "streak": 3,
+      "badges": []
+    },
+    {
+      "address": "0x4d50DD3E57d1F4adade559Bd075BcA0496aaa29b",
+      "tokenId": 230,
+      "stamps": 3,
+      "streak": 3,
+      "badges": [
+        0
+      ]
+    },
+    {
+      "address": "0x90A55b663170557b73FafAB572a46d7e0230DF18",
+      "tokenId": 228,
+      "stamps": 3,
+      "streak": 3,
+      "badges": []
+    },
+    {
+      "address": "0x14f395059726c3dA2F3e4a1f969c6E61ae844731",
+      "tokenId": 227,
+      "stamps": 3,
+      "streak": 3,
+      "badges": [
+        0
+      ]
+    },
+    {
+      "address": "0xB9629F4154648be654833978ED7b87037428C710",
+      "tokenId": 226,
+      "stamps": 3,
+      "streak": 3,
+      "badges": []
+    },
+    {
+      "address": "0x2DB8be71CCdAa91f578721378fbA05F6EE198686",
+      "tokenId": 224,
+      "stamps": 3,
+      "streak": 3,
+      "badges": [
+        0
+      ]
     }
   ]
 }
